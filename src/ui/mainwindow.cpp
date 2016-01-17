@@ -23,6 +23,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "editquestiondialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -44,4 +45,15 @@ void MainWindow::on_actionExit_triggered()
 void MainWindow::on_actionAbout_Qt_triggered()
 {
     QApplication::aboutQt();
+}
+
+void MainWindow::on_actionNew_Question_triggered()
+{
+    EditQuestionDialog edit_dialog;
+
+    int result = edit_dialog.exec();
+    if (result == QDialog::Accepted)
+        qDebug("Accepted");
+    else if (result == QDialog::Rejected)
+        qDebug("Rejected");
 }

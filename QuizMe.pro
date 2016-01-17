@@ -11,11 +11,14 @@ TEMPLATE = app
 SOURCES += \
     src/main.cpp \
     src/ui/mainwindow.cpp \
-    src/question.cpp
+    src/question.cpp \
+    src/ui/editquestiondialog.cpp
 
 HEADERS  += \
     src/ui/mainwindow.h \
-    src/question.h
+    src/question.h \
+    src/ui/editquestiondialog.h
 
 FORMS    += \
-    src/ui/mainwindow.ui
+    src/ui/mainwindow.ui \
+    src/ui/editquestiondialog.ui

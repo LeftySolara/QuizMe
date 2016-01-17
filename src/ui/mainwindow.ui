@@ -35,7 +35,14 @@
     </property>
     <addaction name="actionAbout_Qt"/>
    </widget>
+   <widget class="QMenu" name="menuQuiz">
+    <property name="title">
+     <string>Quiz</string>
+    </property>
+    <addaction name="actionNew_Question"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuQuiz"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -47,6 +54,11 @@
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionNew_Question">
+   <property name="text">
+    <string>New Question</string>
    </property>
   </action>
  </widget>

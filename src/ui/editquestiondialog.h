@@ -1,5 +1,5 @@
 /******************************************************************************
- * mainwindow.h : main window for application
+ * editquestiondialog.h : dialog for editing quiz questions
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,31 +21,52 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef EDITQUESTIONDIALOG_H
+#define EDITQUESTIONDIALOG_H
 
-#include <QMainWindow>
+#include <QDialog>
+#include <QFormLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLineEdit>
+#include <QLabel>
+#include <QPushButton>
 
 namespace Ui {
-    class MainWindow;
+    class EditQuestionDialog;
 }
 
-class MainWindow : public QMainWindow
+class EditQuestionDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit EditQuestionDialog(QWidget *parent = 0);
+    ~EditQuestionDialog();
+
+    void setup_formLayout();
+    void setup_buttonBox();
+    void setup_masterLayout();
 
 private slots:
-    void on_actionExit_triggered();
-    void on_actionAbout_Qt_triggered();
-
-    void on_actionNew_Question_triggered();
+    void on_addChoiceButton_Clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::EditQuestionDialog *ui;
+    QFormLayout *formLayout;
+    QVBoxLayout *masterLayout;
+    QHBoxLayout *buttonBox;
+
+    QLabel *questionLabel;
+    QLabel *answerLabel;
+
+    QLineEdit *questionLineEdit;
+    QLineEdit *answerLineEdit;
+    QLineEdit *choiceLineEdit;
+
+    QPushButton *addChoiceButton;
+    QPushButton *acceptButton;
+    QPushButton *rejectButton;
 };
 
-#endif // MAINWINDOW_H
+#endif // EDITQUESTIONDIALOG_H
