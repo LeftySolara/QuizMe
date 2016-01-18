@@ -12,12 +12,14 @@ SOURCES += \
     src/main.cpp \
     src/ui/mainwindow.cpp \
     src/question.cpp \
-    src/ui/editquestiondialog.cpp
+    src/ui/editquestiondialog.cpp \
+    src/settings.cpp
 
 HEADERS  += \
     src/ui/mainwindow.h \
     src/question.h \
-    src/ui/editquestiondialog.h
+    src/ui/editquestiondialog.h \
+    src/settings.h
 
 FORMS    += \
     src/ui/mainwindow.ui \

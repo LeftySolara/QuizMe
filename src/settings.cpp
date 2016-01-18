@@ -1,5 +1,5 @@
 /******************************************************************************
- * mainwindow.h : main window for application
+ * settings.cpp : namespace for functions that deal with application settings
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,30 +21,40 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#include <QSettings>
+#include <QFile>
+#include <QFileInfo>
+#include <QDir>
+#include "settings.h"
+#include <QtDebug>
 
-#include <QMainWindow>
+namespace settings
+{
 
-namespace Ui {
-    class MainWindow;
+// Check if a settings file exists
+bool settingsExist()
+{
+    QSettings sett;
+    QFileInfo settings_file_info(sett.fileName());
+    return settings_file_info.exists();
 }
 
-class MainWindow : public QMainWindow
+bool createSettingsFile()
 {
-    Q_OBJECT
+    QSettings sett;
+    QFile settings_file;
+    QFileInfo settings_file_info(sett.fileName());
+    QDir dir;
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    if (!dir.mkpath(settings_file_info.path()))
+        return false;
 
-private slots:
-    void on_actionExit_triggered();
-    void on_actionAbout_Qt_triggered();
-    void on_actionNew_Question_triggered();
+    settings_file.setFileName(settings_file_info.filePath());
+    settings_file.open(QIODevice::ReadWrite);
+    if (!settings_file.exists())
+        return false;
+    settings_file.close();
+    return true;
+}
 
-private:
-    Ui::MainWindow *ui;
-};
-
-#endif // MAINWINDOW_H
+}

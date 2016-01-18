@@ -24,11 +24,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "editquestiondialog.h"
+#include "settings.h"
+
+#define APPLICATION_VERSION "0.1"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QCoreApplication::setApplicationName("QuizMe");
+    QCoreApplication::setOrganizationName("QuizMe");
+    QCoreApplication::setApplicationVersion(APPLICATION_VERSION);
+
+    if (!settings::settingsExist()) {
+        qDebug("Creating settings file...");
+        if (settings::createSettingsFile())
+            qDebug("Successfully created settings file.");
+        else
+            qDebug("Could not create settings file.");
+    }
     ui->setupUi(this);
 }
 
