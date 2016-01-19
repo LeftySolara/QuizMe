@@ -66,8 +66,7 @@ void MainWindow::on_actionNew_Question_triggered()
     EditQuestionDialog edit_dialog;
 
     int result = edit_dialog.exec();
-    if (result == QDialog::Accepted)
-        qDebug("Accepted");
-    else if (result == QDialog::Rejected)
-        qDebug("Rejected");
+    if (result == QDialog::Accepted) {
+        edit_dialog.getChoices();
+    }
 }

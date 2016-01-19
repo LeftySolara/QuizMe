@@ -23,6 +23,7 @@
 
 #include "editquestiondialog.h"
 #include "ui_editquestiondialog.h"
+#include <QtDebug>
 
 EditQuestionDialog::EditQuestionDialog(QWidget *parent) :
     QDialog(parent),
@@ -30,9 +31,9 @@ EditQuestionDialog::EditQuestionDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setup_formLayout();
-    setup_buttonBox();
-    setup_masterLayout();
+    setupFormLayout();
+    setupButtonBox();
+    setupMasterLayout();
 }
 
 EditQuestionDialog::~EditQuestionDialog()
@@ -51,7 +52,7 @@ EditQuestionDialog::~EditQuestionDialog()
     delete masterLayout;
 }
 
-void EditQuestionDialog::setup_formLayout()
+void EditQuestionDialog::setupFormLayout()
 {
     questionLabel = new QLabel("Question");
     answerLabel = new QLabel("Answer");
@@ -76,7 +77,7 @@ void EditQuestionDialog::setup_formLayout()
     formLayout->setFormAlignment(Qt::AlignTop);
 }
 
-void EditQuestionDialog::setup_buttonBox()
+void EditQuestionDialog::setupButtonBox()
 {
     buttonBox = new QHBoxLayout();
     acceptButton = new QPushButton("OK");
@@ -89,7 +90,7 @@ void EditQuestionDialog::setup_buttonBox()
     buttonBox->addWidget(rejectButton);
 }
 
-void EditQuestionDialog::setup_masterLayout()
+void EditQuestionDialog::setupMasterLayout()
 {
     masterLayout = new QVBoxLayout();
     masterLayout->addLayout(formLayout);
@@ -99,12 +100,26 @@ void EditQuestionDialog::setup_masterLayout()
     this->setLayout(masterLayout);
 }
 
+// Check each line edit for input and add it to a stringlist
+QStringList EditQuestionDialog::getChoices()
+{
+    QStringList choices;
+    int row_count = formLayout->rowCount();
+
+    for (int row = 2; row < row_count; ++row) {    // first two rows are the question and correct answer
+        choiceLineEdit = (QLineEdit*)formLayout->itemAt(row, QFormLayout::FieldRole)->widget();
+        if (!choiceLineEdit->text().isEmpty())
+            choices.append(choiceLineEdit->text());
+    }
+    return choices;
+}
+
 void EditQuestionDialog::on_addChoiceButton_Clicked()
 {
     QLabel *blankLabel = new QLabel();   // use to keep formLayout aligned
-    QLineEdit *newChoiceLineEdit = new QLineEdit();
-    newChoiceLineEdit->setPlaceholderText("Enter another answer choice...");
+    choiceLineEdit = new QLineEdit();
+    choiceLineEdit->setPlaceholderText("Enter another answer choice...");
 
-    formLayout->addRow(blankLabel, newChoiceLineEdit);
+    formLayout->addRow(blankLabel, choiceLineEdit);
     this->setLayout(masterLayout);
 }

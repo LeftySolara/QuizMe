@@ -44,9 +44,11 @@ public:
     explicit EditQuestionDialog(QWidget *parent = 0);
     ~EditQuestionDialog();
 
-    void setup_formLayout();
-    void setup_buttonBox();
-    void setup_masterLayout();
+    void setupFormLayout();
+    void setupButtonBox();
+    void setupMasterLayout();
+
+    QStringList getChoices();
 
 private slots:
     void on_addChoiceButton_Clicked();
