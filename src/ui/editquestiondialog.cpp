@@ -75,6 +75,9 @@ void EditQuestionDialog::setupFormLayout()
 
     formLayout->setLabelAlignment(Qt::AlignRight);
     formLayout->setFormAlignment(Qt::AlignTop);
+
+    this->setTabOrder(questionLineEdit, answerLineEdit);
+    this->setTabOrder(answerLineEdit, choiceLineEdit);
 }
 
 void EditQuestionDialog::setupButtonBox()
@@ -117,9 +120,13 @@ QStringList EditQuestionDialog::getChoices()
 void EditQuestionDialog::on_addChoiceButton_Clicked()
 {
     QLabel *blankLabel = new QLabel();   // use to keep formLayout aligned
+    QLineEdit *oldLineEdit = choiceLineEdit;
     choiceLineEdit = new QLineEdit();
     choiceLineEdit->setPlaceholderText("Enter another answer choice...");
 
     formLayout->addRow(blankLabel, choiceLineEdit);
+    this->setTabOrder(oldLineEdit, choiceLineEdit);
+    this->setTabOrder(choiceLineEdit, acceptButton);
+    this->setTabOrder(acceptButton, rejectButton);
     this->setLayout(masterLayout);
 }
