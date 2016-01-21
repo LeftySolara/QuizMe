@@ -25,6 +25,9 @@
 #include "ui_mainwindow.h"
 #include "editquestiondialog.h"
 #include "settings.h"
+#include <QFileDialog>
+#include <QFile>
+#include <QDir>
 
 #define APPLICATION_VERSION "0.1"
 
@@ -69,4 +72,18 @@ void MainWindow::on_actionNew_Question_triggered()
     if (result == QDialog::Accepted) {
         edit_dialog.getChoices();
     }
+}
+
+void MainWindow::on_actionNewQuiz_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this,
+        tr("New Quiz"), QDir::homePath(), tr("CSV Files (*.csv)"));
+
+    QFile new_file(filename);
+    if (new_file.open(QIODevice::ReadWrite)) {
+        qDebug("File created successfully.");
+        new_file.close();
+    }
+    else
+        error_message.showMessage("Error creating file.");
 }

@@ -25,6 +25,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QErrorMessage>
 
 namespace Ui {
     class MainWindow;
@@ -42,9 +43,11 @@ private slots:
     void on_actionExit_triggered();
     void on_actionAbout_Qt_triggered();
     void on_actionNew_Question_triggered();
+    void on_actionNewQuiz_triggered();
 
 private:
     Ui::MainWindow *ui;
+    QErrorMessage error_message;
 };
 
 #endif // MAINWINDOW_H
