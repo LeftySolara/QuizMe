@@ -1,5 +1,5 @@
 /******************************************************************************
- * settings.cpp : namespace for functions that deal with application settings
+ * logger.h : namespace for functions that handle application logging
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,40 +21,19 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "settings.h"
-#include <QFile>
-#include <QFileInfo>
-#include <QDir>
-#include <QtDebug>
-#include <QStandardPaths>
+#ifndef LOGGER_H
+#define LOGGER_H
 
-namespace settings
-{
+#include <QtMsgHandler>
+#include <stdio.h>
 
-// Check if a settings file exists
-bool settingsExist()
+namespace logger
 {
-    QSettings settings;
-    QFileInfo settings_file_info(settings.fileName());
-    return settings_file_info.exists();
+extern QString data_path;
+extern FILE *log_file;
+
+bool setup();
+//void writeMessage(QtMsgType type, const QMessageLogContext & context, const QString &msg);
 }
 
-bool createSettingsFile()
-{
-    QSettings settings;
-    QFile settings_file;
-    QFileInfo settings_file_info(settings.fileName());
-    QDir dir;
-
-    if (!dir.mkpath(settings_file_info.path()))
-        return false;
-
-    settings_file.setFileName(settings_file_info.filePath());
-    settings_file.open(QIODevice::ReadWrite);
-    if (!settings_file.exists())
-        return false;
-    settings_file.close();
-    return true;
-}
-
-}
+#endif // LOGGER_H

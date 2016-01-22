@@ -13,13 +13,15 @@ SOURCES += \
     src/ui/mainwindow.cpp \
     src/question.cpp \
     src/ui/editquestiondialog.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/logger.cpp
 
 HEADERS  += \
     src/ui/mainwindow.h \
     src/question.h \
     src/ui/editquestiondialog.h \
-    src/settings.h
+    src/settings.h \
+    src/logger.h
 
 FORMS    += \
     src/ui/mainwindow.ui \

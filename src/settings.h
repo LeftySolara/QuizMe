@@ -24,10 +24,12 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <QSettings>
+
 namespace settings
 {
-    bool settingsExist();
-    bool createSettingsFile();
+bool settingsExist();
+bool createSettingsFile();
 }
 
 #endif // SETTINGS_H
