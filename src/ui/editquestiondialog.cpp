@@ -62,7 +62,8 @@ void EditQuestionDialog::setupFormLayout()
     choiceLineEdit = new QLineEdit();
 
     addChoiceButton = new QPushButton("Add choice");
-    connect(addChoiceButton, SIGNAL (clicked()), this, SLOT (on_addChoiceButton_Clicked()));
+    addChoiceButton->setFocusPolicy(Qt::ClickFocus);
+    connect(addChoiceButton, SIGNAL (clicked()), this, SLOT (addChoice()));
 
     questionLineEdit->setPlaceholderText("Enter a question...");
     answerLineEdit->setPlaceholderText("Enter the correct answer...");
@@ -75,9 +76,6 @@ void EditQuestionDialog::setupFormLayout()
 
     formLayout->setLabelAlignment(Qt::AlignRight);
     formLayout->setFormAlignment(Qt::AlignTop);
-
-    this->setTabOrder(questionLineEdit, answerLineEdit);
-    this->setTabOrder(answerLineEdit, choiceLineEdit);
 }
 
 void EditQuestionDialog::setupButtonBox()
@@ -117,15 +115,13 @@ QStringList EditQuestionDialog::getChoices()
     return choices;
 }
 
-void EditQuestionDialog::on_addChoiceButton_Clicked()
+void EditQuestionDialog::addChoice()
 {
     QLabel *blankLabel = new QLabel();   // use to keep formLayout aligned
-    QLineEdit *oldLineEdit = choiceLineEdit;
     choiceLineEdit = new QLineEdit();
     choiceLineEdit->setPlaceholderText("Enter another answer choice...");
-
     formLayout->addRow(blankLabel, choiceLineEdit);
-    this->setTabOrder(oldLineEdit, choiceLineEdit);
+
     this->setTabOrder(choiceLineEdit, acceptButton);
     this->setTabOrder(acceptButton, rejectButton);
     this->setLayout(masterLayout);

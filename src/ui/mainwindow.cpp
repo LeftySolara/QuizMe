@@ -42,13 +42,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setApplicationVersion(APPLICATION_VERSION);
 
     logger::setup();
+    qInfo("Starting application...");
 
     if (!settings::settingsExist()) {
-        qDebug("Creating settings file...");
+        qDebug("No configuration file found. Creating...");
         if (settings::createSettingsFile())
-            qDebug("Successfully created settings file.");
+            qDebug("Successfully created configuration file.");
         else
-            qDebug("Could not create settings file.");
+            qDebug("Could not create configuration file.");
     }
     ui->setupUi(this);
 }
@@ -83,11 +84,16 @@ void MainWindow::on_actionNewQuiz_triggered()
     QString filename = QFileDialog::getSaveFileName(this,
         tr("New Quiz"), QDir::homePath(), tr("CSV Files (*.csv)"));
 
+    if (filename.isEmpty())
+        return;
+
     QFile new_file(filename);
     if (new_file.open(QIODevice::ReadWrite)) {
-        qDebug("File created successfully.");
+        qInfo("New quiz file created successfully.");
         new_file.close();
     }
-    else
+    else {
+        qCritical() << "Unable to create new quiz file " << filename << ".";
         error_message.showMessage("Error creating file.");
+    }
 }

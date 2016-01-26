@@ -51,7 +51,7 @@ public:
     QStringList getChoices();
 
 private slots:
-    void on_addChoiceButton_Clicked();
+    void addChoice();
 
 private:
     Ui::EditQuestionDialog *ui;
