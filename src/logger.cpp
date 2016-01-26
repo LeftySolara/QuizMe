@@ -26,9 +26,12 @@
 #include <QTextStream>
 #include <QtDebug>
 #include <QStandardPaths>
+#include <QTime>
+#include <QDate>
 
 namespace logger
 {
+QDateTime current_datetime;
 QString data_path;
 QFile log_file;
 
@@ -44,6 +47,7 @@ bool setup()
     log_file.open(QIODevice::Append);
 
     qInstallMessageHandler(writeMessage);
+    current_datetime.setDate(QDate::currentDate());
 
     return true;
 }
@@ -52,26 +56,27 @@ void writeMessage(QtMsgType type, const QMessageLogContext &context, const QStri
 {
     QByteArray localMsg = msg.toLocal8Bit();
     QTextStream out(&log_file);
+    current_datetime.setTime(QTime::currentTime());
 
     switch (type) {
     case QtDebugMsg:
-        out << "Debug: " << localMsg.constData() << " (" << context.file
+        out << current_datetime.toString("yyyy-MM-dd hh:mm:ss") << " Debug: " << localMsg.constData() << " (" << context.file
             << ":" << context.line << ", " << context.function << ")\n";
         break;
     case QtInfoMsg:
-        out << "Info: " << localMsg.constData() << " (" << context.file
+        out << current_datetime.toString("yyyy-MM-dd hh:mm:ss") << " Info: " << localMsg.constData() << " (" << context.file
             << ":" << context.line << ", " << context.function << ")\n";
         break;
     case QtWarningMsg:
-        out << "Warning: " << localMsg.constData() << " (" << context.file
+        out << current_datetime.toString("yyyy-MM-dd hh:mm:ss") << " Warning: " << localMsg.constData() << " (" << context.file
             << ":" << context.line << ", " << context.function << ")\n";
         break;
     case QtCriticalMsg:
-        out << "Critical: " << localMsg.constData() << " (" << context.file
+        out << current_datetime.toString("yyyy-MM-dd hh:mm:ss") << " Critical: " << localMsg.constData() << " (" << context.file
             << ":" << context.line << ", " << context.function << ")\n";
         break;
     case QtFatalMsg:
-        out << "Fatal: " << localMsg.constData() << " (" << context.file
+        out << current_datetime.toString("yyyy-MM-dd hh:mm:ss") << " Fatal: " << localMsg.constData() << " (" << context.file
             << ":" << context.line << ", " << context.function << ")\n";
     }
 }

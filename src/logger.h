@@ -25,11 +25,13 @@
 #define LOGGER_H
 
 #include <QtMsgHandler>
+#include <QDateTime>
 #include <QFile>
 #include <stdio.h>
 
 namespace logger
 {
+extern QDateTime current_datetime;
 extern QString data_path;
 extern QFile log_file;
 
