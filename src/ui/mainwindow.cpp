@@ -25,9 +25,11 @@
 #include "ui_mainwindow.h"
 #include "editquestiondialog.h"
 #include "settings.h"
+#include "logger.h"
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
+#include <QtDebug>
 
 #define APPLICATION_VERSION "0.1"
 
@@ -36,8 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QCoreApplication::setApplicationName("QuizMe");
-    QCoreApplication::setOrganizationName("QuizMe");
+    QCoreApplication::setOrganizationName("LeftySolara");
     QCoreApplication::setApplicationVersion(APPLICATION_VERSION);
+
+    logger::setup();
 
     if (!settings::settingsExist()) {
         qDebug("Creating settings file...");

@@ -25,15 +25,16 @@
 #define LOGGER_H
 
 #include <QtMsgHandler>
+#include <QFile>
 #include <stdio.h>
 
 namespace logger
 {
 extern QString data_path;
-extern FILE *log_file;
+extern QFile log_file;
 
 bool setup();
-//void writeMessage(QtMsgType type, const QMessageLogContext & context, const QString &msg);
+void writeMessage(QtMsgType type, const QMessageLogContext & context, const QString &msg);
 }
 
 #endif // LOGGER_H

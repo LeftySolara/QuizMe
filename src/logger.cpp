@@ -23,27 +23,57 @@
 
 #include "logger.h"
 #include <QDir>
+#include <QTextStream>
 #include <QtDebug>
 #include <QStandardPaths>
 
 namespace logger
 {
 QString data_path;
-FILE *log_file;
+QFile log_file;
 
 // Create directory and file for logs if none exists
 bool setup()
 {
     QDir dir;
     data_path = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-    qDebug() << data_path;
     if (!dir.mkpath(data_path))
         return false;
 
-    QString log_file_path = data_path + "/log";
-    FILE *log_file = fopen(log_file_path.toStdString().c_str(), "w");
+    log_file.setFileName(data_path + "/log");
+    log_file.open(QIODevice::Append);
+
+    qInstallMessageHandler(writeMessage);
 
     return true;
+}
+
+void writeMessage(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    QTextStream out(&log_file);
+
+    switch (type) {
+    case QtDebugMsg:
+        out << "Debug: " << localMsg.constData() << " (" << context.file
+            << ":" << context.line << ", " << context.function << ")\n";
+        break;
+    case QtInfoMsg:
+        out << "Info: " << localMsg.constData() << " (" << context.file
+            << ":" << context.line << ", " << context.function << ")\n";
+        break;
+    case QtWarningMsg:
+        out << "Warning: " << localMsg.constData() << " (" << context.file
+            << ":" << context.line << ", " << context.function << ")\n";
+        break;
+    case QtCriticalMsg:
+        out << "Critical: " << localMsg.constData() << " (" << context.file
+            << ":" << context.line << ", " << context.function << ")\n";
+        break;
+    case QtFatalMsg:
+        out << "Fatal: " << localMsg.constData() << " (" << context.file
+            << ":" << context.line << ", " << context.function << ")\n";
+    }
 }
 
 }
