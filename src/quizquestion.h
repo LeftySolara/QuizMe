@@ -1,5 +1,5 @@
 /******************************************************************************
- * question.h : class for representing quiz questions
+ * quizquestion.h : parent class for question objects
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,29 +21,35 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef QUESTION_H
-#define QUESTION_H
+#ifndef QUIZQUESTION_H
+#define QUIZQUESTION_H
 
-#define DEFAULT_QUESTION "Enter question here"
-#define DEFAULT_ANSWER "Enter answer here"
+#include <QString>
 
-#include <QStringList>
-
-class Question
+class QuizQuestion
 {
 public:
-    Question(QString qstn = DEFAULT_QUESTION, QString ans = DEFAULT_ANSWER,
-             QStringList options = QStringList());
+    QuizQuestion();
+    QuizQuestion(int pos, int pts, QString questn, QString ans);
 
-    void set_question(QString question);
-    void set_answer(QString answer);
+    void setQuestion(QString questn);
+    void setCorrectAnswer(QString ans);
+    void setPosition(unsigned int pos);
+    void setPoints(unsigned int amount);
 
-    QString get_question();
-    QString get_answer();
+    QString getQuestion();
+    QString getCorrectAnswer();
+    unsigned int getPosition();
+    unsigned int getPoints();
+
+    // void checkAnswer();
+
+
 private:
     QString question;
     QString answer;
-    QStringList choices;
+    unsigned int position;
+    unsigned int points;
 };
 
-#endif // QUESTION_H
+#endif // QUIZQUESTION_H

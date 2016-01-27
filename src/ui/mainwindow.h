@@ -24,6 +24,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "question.h"
 #include <QMainWindow>
 #include <QErrorMessage>
 
@@ -44,6 +45,7 @@ private slots:
     void on_actionAbout_Qt_triggered();
     void on_actionNew_Question_triggered();
     void on_actionNewQuiz_triggered();
+    //void addQuestionView();
 
 private:
     Ui::MainWindow *ui;

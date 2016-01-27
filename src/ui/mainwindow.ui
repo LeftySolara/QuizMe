@@ -64,7 +64,13 @@
   </action>
   <action name="actionNewQuiz">
    <property name="text">
-    <string>New Quiz...</string>
+    <string>New Quiz</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new quiz file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>

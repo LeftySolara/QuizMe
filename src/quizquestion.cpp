@@ -1,5 +1,5 @@
 /******************************************************************************
- * question.cpp : implementation for Question class
+ * quizquestion.cpp : parent class for question objects
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,32 +21,60 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#include "question.h"
+#include "quizquestion.h"
 
-
-Question::Question(QString qstn, QString ans, QStringList options)
+QuizQuestion::QuizQuestion()
 {
-    this->question = qstn;
-    this->answer = ans;
-    this->choices = options;
+    this->question = QString();
+    this->answer = QString();
+    this->position = 0;
+    this->points = 0;
 }
 
-void Question::set_question(QString qstn)
+QuizQuestion::QuizQuestion(int pos, int pts, QString questn, QString ans)
 {
-    this->question = qstn;
-}
-
-void Question::set_answer(QString ans)
-{
+    this->position = pos;
+    this->points = pts;
+    this->question = questn;
     this->answer = ans;
 }
 
-QString Question::get_question()
+void QuizQuestion::setQuestion(QString questn)
+{
+    this->question = questn;
+}
+
+void QuizQuestion::setCorrectAnswer(QString ans)
+{
+    this->answer = ans;
+}
+
+void QuizQuestion::setPosition(unsigned int pos)
+{
+    this->position = pos;
+}
+
+void QuizQuestion::setPoints(unsigned int amount)
+{
+    this->points =amount;
+}
+
+QString QuizQuestion::getQuestion()
 {
     return this->question;
 }
 
-QString Question::get_answer()
+QString QuizQuestion::getCorrectAnswer()
 {
     return this->answer;
+}
+
+unsigned int QuizQuestion::getPosition()
+{
+    return this->position;
+}
+
+unsigned int QuizQuestion::getPoints()
+{
+    return this->points;
 }

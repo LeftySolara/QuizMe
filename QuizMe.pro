@@ -14,14 +14,16 @@ SOURCES += \
     src/question.cpp \
     src/ui/editquestiondialog.cpp \
     src/settings.cpp \
-    src/logger.cpp
+    src/logger.cpp \
+    src/quizquestion.cpp
 
 HEADERS  += \
     src/ui/mainwindow.h \
     src/question.h \
     src/ui/editquestiondialog.h \
     src/settings.h \
-    src/logger.h
+    src/logger.h \
+    src/quizquestion.h
 
 FORMS    += \
     src/ui/mainwindow.ui \
