@@ -24,7 +24,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "question.h"
 #include <QMainWindow>
 #include <QErrorMessage>
 

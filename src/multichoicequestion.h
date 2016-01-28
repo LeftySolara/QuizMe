@@ -1,5 +1,5 @@
 /******************************************************************************
- * quizquestion.h : parent class for question objects
+ * multichoicequestion.h : a multiple-choice question
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,32 +21,29 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef QUIZQUESTION_H
-#define QUIZQUESTION_H
+#ifndef MULTICHOICEQUESTION_H
+#define MULTICHOICEQUESTION_H
 
+#include "quizquestion.h"
 #include <QString>
+#include <QStringList>
 
-class QuizQuestion
+
+class MultiChoiceQuestion : public QuizQuestion
 {
 public:
-    QuizQuestion();
-    QuizQuestion(int pos, int pts, QString questn, QString ans);
+    MultiChoiceQuestion(int pos, int pts, QString questn, QString ans, QStringList options)
+    : QuizQuestion(pos, pts, questn, ans)
+    {
+        options.append(ans);
+        this->choices = options;
+    }
 
-    void setQuestion(QString questn);
-    void setCorrectAnswer(QString ans);
-    void setPosition(unsigned int pos);
-    void setPoints(unsigned int amount);
+    bool checkAnswer(QString chosen_option);
+    void shuffleChoices();
 
-    QString getQuestion();
-    QString getCorrectAnswer();
-    unsigned int getPosition();
-    unsigned int getPoints();
-
-protected:
-    QString question;
-    QString answer;
-    unsigned int position;
-    unsigned int points;
+private:
+    QStringList choices;
 };
 
-#endif // QUIZQUESTION_H
+#endif // MULTICHOICEQUESTION_H

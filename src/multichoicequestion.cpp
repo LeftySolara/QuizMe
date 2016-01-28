@@ -1,5 +1,5 @@
 /******************************************************************************
- * quizquestion.h : parent class for question objects
+ * multichoicequestion.cpp : a multiple-choice question
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,32 +21,18 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef QUIZQUESTION_H
-#define QUIZQUESTION_H
+#include "multichoicequestion.h"
+#include <algorithm>
+#include <ctime>
+#include <cstdlib>
 
-#include <QString>
-
-class QuizQuestion
+bool MultiChoiceQuestion::checkAnswer(QString chosen_option)
 {
-public:
-    QuizQuestion();
-    QuizQuestion(int pos, int pts, QString questn, QString ans);
+    return chosen_option == answer;
+}
 
-    void setQuestion(QString questn);
-    void setCorrectAnswer(QString ans);
-    void setPosition(unsigned int pos);
-    void setPoints(unsigned int amount);
-
-    QString getQuestion();
-    QString getCorrectAnswer();
-    unsigned int getPosition();
-    unsigned int getPoints();
-
-protected:
-    QString question;
-    QString answer;
-    unsigned int position;
-    unsigned int points;
-};
-
-#endif // QUIZQUESTION_H
+void MultiChoiceQuestion::shuffleChoices()
+{
+    std::srand (unsigned(std::time(0)));
+    std::random_shuffle(choices.begin(), choices.end());
+}

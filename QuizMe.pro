@@ -11,19 +11,19 @@ TEMPLATE = app
 SOURCES += \
     src/main.cpp \
     src/ui/mainwindow.cpp \
-    src/question.cpp \
     src/ui/editquestiondialog.cpp \
     src/settings.cpp \
     src/logger.cpp \
-    src/quizquestion.cpp
+    src/quizquestion.cpp \
+    src/multichoicequestion.cpp
 
 HEADERS  += \
     src/ui/mainwindow.h \
-    src/question.h \
     src/ui/editquestiondialog.h \
     src/settings.h \
     src/logger.h \
-    src/quizquestion.h
+    src/quizquestion.h \
+    src/multichoicequestion.h
 
 FORMS    += \
     src/ui/mainwindow.ui \
