@@ -26,6 +26,7 @@
 
 #include <QMainWindow>
 #include <QErrorMessage>
+#include "questionform.h"
 
 namespace Ui {
     class MainWindow;
@@ -44,7 +45,7 @@ private slots:
     void on_actionAbout_Qt_triggered();
     void on_actionNew_Question_triggered();
     void on_actionNewQuiz_triggered();
-    //void addQuestionView();
+    void on_actionOpen_Quiz_triggered();
 
 private:
     Ui::MainWindow *ui;

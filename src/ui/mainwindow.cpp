@@ -97,3 +97,9 @@ void MainWindow::on_actionNewQuiz_triggered()
         error_message.showMessage("Error creating file.");
     }
 }
+
+void MainWindow::on_actionOpen_Quiz_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this,
+        tr("Open File"), QDir::homePath(), tr("CSV Files (*.csv)"));
+}

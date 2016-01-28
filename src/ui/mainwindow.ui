@@ -28,6 +28,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNewQuiz"/>
+    <addaction name="actionOpen_Quiz"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -71,6 +72,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen_Quiz">
+   <property name="text">
+    <string>Open Quiz</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

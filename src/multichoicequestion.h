@@ -32,6 +32,8 @@
 class MultiChoiceQuestion : public QuizQuestion
 {
 public:
+    MultiChoiceQuestion() : QuizQuestion() {}
+
     MultiChoiceQuestion(int pos, int pts, QString questn, QString ans, QStringList options)
     : QuizQuestion(pos, pts, questn, ans)
     {
