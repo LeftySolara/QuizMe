@@ -26,6 +26,7 @@
 #include "editquestiondialog.h"
 #include "settings.h"
 #include "logger.h"
+#include "multichoicequestion.h"
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
@@ -52,6 +53,31 @@ MainWindow::MainWindow(QWidget *parent) :
             qDebug("Could not create configuration file.");
     }
     ui->setupUi(this);
+
+    // Here for testing
+    MultiChoiceQuestion que;
+    que.setPosition(1);
+    que.setPoints(1);
+    que.setQuestion("This is a question");
+
+    QStringList list;
+    list.append("One");
+    list.append("Two");
+    list.append("Three");
+    que.setChoices(list);
+    que.setCorrectAnswer("This is the answer");
+
+    form = new QuestionForm(0, que);
+    form->setupFormLayout();
+
+    button = new QPushButton("Hello");
+    boxLayout = new QVBoxLayout;
+    boxLayout->addWidget(button);
+    boxLayout->addWidget(form);
+
+    // /stuff for testing
+
+    centralWidget()->setLayout(boxLayout);
 }
 
 MainWindow::~MainWindow()

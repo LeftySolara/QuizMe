@@ -31,6 +31,8 @@
 
 class MultiChoiceQuestion : public QuizQuestion
 {
+friend class QuestionForm;
+
 public:
     MultiChoiceQuestion() : QuizQuestion() {}
 
@@ -42,6 +44,8 @@ public:
     }
 
     bool checkAnswer(QString chosen_option);
+    bool setCorrectAnswer(QString ans);
+    void setChoices(QStringList list);
     void shuffleChoices();
 
 private:

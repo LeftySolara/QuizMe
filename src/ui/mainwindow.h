@@ -26,6 +26,8 @@
 
 #include <QMainWindow>
 #include <QErrorMessage>
+#include <QVBoxLayout>
+#include <QPushButton>
 #include "questionform.h"
 
 namespace Ui {
@@ -50,6 +52,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QErrorMessage error_message;
+    QVBoxLayout *boxLayout;
+    QPushButton *button;
+    QuestionForm *form;
 };
 
 #endif // MAINWINDOW_H

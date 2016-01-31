@@ -28,6 +28,7 @@ private:
     QFormLayout *formLayout;
     QLabel *numberLabel;
     QLabel *questionLabel;
+    QLabel *answerLabel;
     QRadioButton *radioButton;
 };
 
