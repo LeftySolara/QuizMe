@@ -1,9 +1,9 @@
-#include "questionform.h"
-#include "ui_questionform.h"
+#include "questionlayout.h"
+#include "ui_questionlayout.h"
 
-QuestionForm::QuestionForm(QWidget *parent, MultiChoiceQuestion question) :
+QuestionLayout::QuestionLayout(QWidget *parent, MultiChoiceQuestion question) :
     QWidget(parent),
-    ui(new Ui::QuestionForm)
+    ui(new Ui::QuestionLayout)
 {
     ui->setupUi(this);
 
@@ -11,12 +11,12 @@ QuestionForm::QuestionForm(QWidget *parent, MultiChoiceQuestion question) :
     setupFormLayout();
 }
 
-QuestionForm::~QuestionForm()
+QuestionLayout::~QuestionLayout()
 {
     delete ui;
 }
 
-void QuestionForm::setupFormLayout()
+void QuestionLayout::setupFormLayout()
 {
     formLayout = new QFormLayout();
 

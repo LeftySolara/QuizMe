@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    que.setChoices(list);
 //    que.setCorrectAnswer("This is the answer");
 
-//    form = new QuestionForm(0, que);
+//    form = new QuestionLayout(0, que);
 //    form->setupFormLayout();
 
 //    button = new QPushButton("Hello");

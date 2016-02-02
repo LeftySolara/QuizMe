@@ -2,8 +2,8 @@
  <author/>
  <comment/>
  <exportmacro/>
- <class>QuestionForm</class>
- <widget class="QWidget" name="QuestionForm">
+ <class>QuestionLayout</class>
+ <widget class="QWidget" name="QuestionLayout">
   <property name="geometry">
    <rect>
     <x>0</x>

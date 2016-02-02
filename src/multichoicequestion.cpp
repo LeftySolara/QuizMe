@@ -31,7 +31,7 @@ bool MultiChoiceQuestion::checkAnswer(QString chosen_option)
     return chosen_option == answer;
 }
 
-bool MultiChoiceQuestion::setCorrectAnswer(QString ans)
+void MultiChoiceQuestion::setCorrectAnswer(QString ans)
 {
     this->answer = ans;
     choices.append(ans);

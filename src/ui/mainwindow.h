@@ -28,7 +28,7 @@
 #include <QErrorMessage>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include "questionform.h"
+#include "questionlayout.h"
 
 namespace Ui {
     class MainWindow;
@@ -56,7 +56,7 @@ private:
     QErrorMessage error_message;
 //    QVBoxLayout *boxLayout;
 //    QPushButton *button;
-//    QuestionForm *form;
+//    QuestionLayout *form;
 };
 
 #endif // MAINWINDOW_H

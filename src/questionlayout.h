@@ -1,5 +1,5 @@
-#ifndef QUESTIONFORM_H
-#define QUESTIONFORM_H
+#ifndef QUESTIONLAYOUT_H
+#define QUESTIONLAYOUT_H
 
 #include "multichoicequestion.h"
 #include <QWidget>
@@ -8,21 +8,21 @@
 #include <QRadioButton>
 
 namespace Ui {
-class QuestionForm;
+class QuestionLayout;
 }
 
-class QuestionForm : public QWidget
+class QuestionLayout : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit QuestionForm(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
-    ~QuestionForm();
+    explicit QuestionLayout(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
+    ~QuestionLayout();
 
     void setupFormLayout();
 
 private:
-    Ui::QuestionForm *ui;
+    Ui::QuestionLayout *ui;
 
     MultiChoiceQuestion question;
     QFormLayout *formLayout;
@@ -32,4 +32,4 @@ private:
     QRadioButton *radioButton;
 };
 
-#endif // QUESTIONFORM_H
+#endif // QUESTIONLAYOUT_H
