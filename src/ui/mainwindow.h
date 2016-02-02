@@ -41,6 +41,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void openQuizFromFile(QString filename);
+
 
 private slots:
     void on_actionExit_triggered();
@@ -52,9 +54,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QErrorMessage error_message;
-    QVBoxLayout *boxLayout;
-    QPushButton *button;
-    QuestionForm *form;
+//    QVBoxLayout *boxLayout;
+//    QPushButton *button;
+//    QuestionForm *form;
 };
 
 #endif // MAINWINDOW_H

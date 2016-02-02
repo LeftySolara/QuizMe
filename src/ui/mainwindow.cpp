@@ -55,34 +55,52 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Here for testing
-    MultiChoiceQuestion que;
-    que.setPosition(1);
-    que.setPoints(1);
-    que.setQuestion("This is a question");
+//    MultiChoiceQuestion que;
+//    que.setPosition(1);
+//    que.setPoints(1);
+//    que.setQuestion("This is a question");
 
-    QStringList list;
-    list.append("One");
-    list.append("Two");
-    list.append("Three");
-    que.setChoices(list);
-    que.setCorrectAnswer("This is the answer");
+//    QStringList list;
+//    list.append("One");
+//    list.append("Two");
+//    list.append("Three");
+//    que.setChoices(list);
+//    que.setCorrectAnswer("This is the answer");
 
-    form = new QuestionForm(0, que);
-    form->setupFormLayout();
+//    form = new QuestionForm(0, que);
+//    form->setupFormLayout();
 
-    button = new QPushButton("Hello");
-    boxLayout = new QVBoxLayout;
-    boxLayout->addWidget(button);
-    boxLayout->addWidget(form);
+//    button = new QPushButton("Hello");
+//    boxLayout = new QVBoxLayout;
+//    boxLayout->addWidget(button);
+//    boxLayout->addWidget(form);
 
     // /stuff for testing
 
-    centralWidget()->setLayout(boxLayout);
+//    centralWidget()->setLayout(boxLayout);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+// Read a file and create question objects out of it
+void MainWindow::openQuizFromFile(QString filename)
+{
+    QFile targetFile(filename);
+    if (!targetFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug("Could not open csv file.");
+        return;
+    }
+
+    QTextStream in(&targetFile);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        qInfo() << line;
+    }
+
+    targetFile.close();
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -126,6 +144,8 @@ void MainWindow::on_actionNewQuiz_triggered()
 
 void MainWindow::on_actionOpen_Quiz_triggered()
 {
+    // absolute path to file
     QString filename = QFileDialog::getOpenFileName(this,
         tr("Open File"), QDir::homePath(), tr("CSV Files (*.csv)"));
+    openQuizFromFile(filename);
 }

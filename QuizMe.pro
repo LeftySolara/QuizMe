@@ -16,7 +16,6 @@ SOURCES += \
     src/logger.cpp \
     src/quizquestion.cpp \
     src/multichoicequestion.cpp \
-    src/shortanswerquestion.cpp \
     src/questionform.cpp
 
 HEADERS  += \
@@ -26,7 +25,6 @@ HEADERS  += \
     src/logger.h \
     src/quizquestion.h \
     src/multichoicequestion.h \
-    src/shortanswerquestion.h \
     src/questionform.h
 
 FORMS    += \
