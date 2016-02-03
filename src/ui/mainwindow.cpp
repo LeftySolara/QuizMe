@@ -121,6 +121,7 @@ void MainWindow::on_actionNew_Question_triggered()
     if (result == QDialog::Accepted) {
         edit_dialog.getChoices();
     }
+
 }
 
 void MainWindow::on_actionNewQuiz_triggered()

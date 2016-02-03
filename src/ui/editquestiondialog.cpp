@@ -42,6 +42,8 @@ EditQuestionDialog::~EditQuestionDialog()
     delete formLayout;
     delete questionLabel;
     delete questionLineEdit;
+    delete positionLabel;
+    delete pointsLabel;
     delete answerLabel;
     delete answerLineEdit;
     delete choiceLineEdit;
@@ -56,9 +58,13 @@ void EditQuestionDialog::setupFormLayout()
 {
     questionLabel = new QLabel("Question");
     answerLabel = new QLabel("Answer");
+    positionLabel = new QLabel("Position");
+    pointsLabel = new QLabel("Points");
 
     questionLineEdit = new QLineEdit();
     answerLineEdit = new QLineEdit();
+    positionLineEdit = new QLineEdit();
+    pointsLineEdit = new QLineEdit();
     choiceLineEdit = new QLineEdit();
 
     addChoiceButton = new QPushButton("Add choice");
@@ -67,9 +73,13 @@ void EditQuestionDialog::setupFormLayout()
 
     questionLineEdit->setPlaceholderText("Enter a question...");
     answerLineEdit->setPlaceholderText("Enter the correct answer...");
+    positionLineEdit->setPlaceholderText("Enter position in quiz...");
+    pointsLineEdit->setPlaceholderText("Enter number of points for this question...");
     choiceLineEdit->setPlaceholderText("Enter another answer choice...");
 
     formLayout = new QFormLayout();
+    formLayout->addRow(positionLabel, positionLineEdit);
+    formLayout->addRow(pointsLabel, pointsLineEdit);
     formLayout->addRow(questionLabel, questionLineEdit);
     formLayout->addRow(answerLabel, answerLineEdit);
     formLayout->addRow(addChoiceButton, choiceLineEdit);

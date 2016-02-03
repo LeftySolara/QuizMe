@@ -50,6 +50,7 @@ public:
 
     QStringList getChoices();
 
+
 private slots:
     void addChoice();
 
@@ -61,9 +62,13 @@ private:
 
     QLabel *questionLabel;
     QLabel *answerLabel;
+    QLabel *positionLabel;
+    QLabel *pointsLabel;
 
     QLineEdit *questionLineEdit;
     QLineEdit *answerLineEdit;
+    QLineEdit *positionLineEdit;
+    QLineEdit *pointsLineEdit;
     QLineEdit *choiceLineEdit;
 
     QPushButton *addChoiceButton;
