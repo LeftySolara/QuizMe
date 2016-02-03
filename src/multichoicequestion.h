@@ -46,6 +46,7 @@ public:
     bool checkAnswer(QString chosen_option);
     void setCorrectAnswer(QString ans);
     void setChoices(QStringList list);
+    void addChoice(QString choice);
     void shuffleChoices();
 
 private:

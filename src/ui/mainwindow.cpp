@@ -54,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     ui->setupUi(this);
 
+    mainLayout = new QVBoxLayout;
+
     // Here for testing
 //    MultiChoiceQuestion que;
 //    que.setPosition(1);
@@ -83,9 +85,14 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete mainLayout;
+
+    for (int i = 0; i < questionLayouts.size(); ++i)
+        delete questionLayouts[i];
 }
 
 // Read a file and create question objects out of it
+// Assumes the csv file is formatted as: question,answer,position,points,choice1,choice2,...,choiceN
 void MainWindow::openQuizFromFile(QString filename)
 {
     QFile targetFile(filename);
@@ -94,12 +101,30 @@ void MainWindow::openQuizFromFile(QString filename)
         return;
     }
 
+    QuestionLayout *layout;
+
     QTextStream in(&targetFile);
     while (!in.atEnd()) {
-        QString line = in.readLine();
-        qInfo() << line;
-    }
+        QStringList line = in.readLine().split(',');
+        if (line.isEmpty())
+            continue;
 
+        MultiChoiceQuestion question;
+        for (int i = 0; i < line.size(); ++i) {
+            if (i == 0)
+                question.setQuestion(line[i]);
+            else if (i == 1)
+                question.setCorrectAnswer(line[i]);
+            else if (i == 2)
+                question.setPosition(line[i].toInt());
+            else if (i == 3)
+                question.setPoints(line[i].toInt());
+            else
+                question.addChoice(line[i]);
+        }
+        layout = new QuestionLayout(0, question);
+        questionLayouts.push_back(layout);
+    }
     targetFile.close();
 }
 
@@ -139,7 +164,7 @@ void MainWindow::on_actionNewQuiz_triggered()
     }
     else {
         qCritical() << "Unable to create new quiz file " << filename << ".";
-        error_message.showMessage("Error creating file.");
+        errorMessage.showMessage("Error creating file.");
     }
 }
 
@@ -149,4 +174,9 @@ void MainWindow::on_actionOpen_Quiz_triggered()
     QString filename = QFileDialog::getOpenFileName(this,
         tr("Open File"), QDir::homePath(), tr("CSV Files (*.csv)"));
     openQuizFromFile(filename);
+
+    for (int i = 0; i < questionLayouts.size(); ++i) {
+        mainLayout->addWidget(questionLayouts[i]);
+    }
+    centralWidget()->setLayout(mainLayout);
 }
