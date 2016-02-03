@@ -1,5 +1,5 @@
 /******************************************************************************
- * questionlayout.h : a way to display quiz questions
+ * quiz.cpp : a collection of quiz questions
  * ****************************************************************************
  * Copyright (C) 2016 Jalen Adams
  *
@@ -21,38 +21,18 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef QUESTIONLAYOUT_H
-#define QUESTIONLAYOUT_H
+#include "quiz.h"
 
-#include "multichoicequestion.h"
-#include <QWidget>
-#include <QFormLayout>
-#include <QLabel>
-#include <QRadioButton>
+Quiz::Quiz()
+{
 
-namespace Ui {
-class QuestionLayout;
 }
 
-class QuestionLayout : public QWidget
+void Quiz::addQuestion(QuizQuestion question)
 {
-    Q_OBJECT
+    this->questions.push_back(question);
+}
 
-public:
-    explicit QuestionLayout(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
-    ~QuestionLayout();
-
-    void setupFormLayout();
-
-private:
-    Ui::QuestionLayout *ui;
-
-    MultiChoiceQuestion question;
-    QFormLayout *formLayout;
-    QLabel *numberLabel;
-    QLabel *questionLabel;
-    QLabel *answerLabel;
-    QRadioButton *radioButton;
-};
-
-#endif // QUESTIONLAYOUT_H
+void Quiz::removeQuestion(int position)
+{
+}
