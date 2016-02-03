@@ -28,6 +28,7 @@
 #include <QErrorMessage>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QVector>
 #include "questionlayout.h"
 
 namespace Ui {
@@ -53,7 +54,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QErrorMessage error_message;
+    QErrorMessage errorMessage;
+    QVector<QuestionLayout*> questionLayouts;
+    QVBoxLayout *mainLayout;
+
 //    QVBoxLayout *boxLayout;
 //    QPushButton *button;
 //    QuestionLayout *form;

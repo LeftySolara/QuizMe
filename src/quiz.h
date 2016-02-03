@@ -26,7 +26,7 @@
 
 #include "quizquestion.h"
 #include "questionlayout.h"
-#include <vector>
+#include <QVector>
 
 class Quiz
 {
@@ -37,7 +37,7 @@ public:
     void setupForm();
 
 private:
-    std::vector<QuizQuestion> questions;
+    QVector<QuizQuestion> questions;
     QuestionLayout *layout;
 };
 

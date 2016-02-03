@@ -42,6 +42,11 @@ void MultiChoiceQuestion::setChoices(QStringList list)
     this->choices = list;
 }
 
+void MultiChoiceQuestion::addChoice(QString choice)
+{
+    this->choices.append(choice);
+}
+
 void MultiChoiceQuestion::shuffleChoices()
 {
     std::srand (unsigned(std::time(0)));

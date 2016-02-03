@@ -30,6 +30,8 @@
 #include <QLabel>
 #include <QRadioButton>
 
+// TODO: re-write to inherit from QLayout
+
 namespace Ui {
 class QuestionLayout;
 }
@@ -46,7 +48,6 @@ public:
 
 private:
     Ui::QuestionLayout *ui;
-
     MultiChoiceQuestion question;
     QFormLayout *formLayout;
     QLabel *numberLabel;

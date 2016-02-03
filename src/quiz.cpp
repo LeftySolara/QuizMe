@@ -35,4 +35,5 @@ void Quiz::addQuestion(QuizQuestion question)
 
 void Quiz::removeQuestion(int position)
 {
+    questions.remove(position);
 }
