@@ -31,6 +31,8 @@
 #include <QVector>
 #include "questionlayout.h"
 
+// TODO: Write function that writes questions to a file
+
 namespace Ui {
     class MainWindow;
 }

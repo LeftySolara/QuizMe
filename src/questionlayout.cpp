@@ -39,6 +39,11 @@ QuestionLayout::~QuestionLayout()
     delete ui;
 }
 
+MultiChoiceQuestion QuestionLayout::getQuestion()
+{
+    return this->question;
+}
+
 void QuestionLayout::setupFormLayout()
 {
     formLayout = new QFormLayout();

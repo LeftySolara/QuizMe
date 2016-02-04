@@ -144,7 +144,14 @@ void MainWindow::on_actionNew_Question_triggered()
 
     int result = edit_dialog.exec();
     if (result == QDialog::Accepted) {
-        edit_dialog.getChoices();
+        MultiChoiceQuestion *que;
+        que->setQuestion(edit_dialog.getPoints());
+        que->setCorrectAnswer(edit_dialog.getAnswer());
+        que->setPosition(edit_dialog.getPosition());
+        que->setPoints(edit_dialog.getPoints());
+        que->setChoices(edit_dialog.getChoices());
+
+        questionLayouts.push_back(que);
     }
 
 }

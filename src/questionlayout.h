@@ -43,8 +43,7 @@ class QuestionLayout : public QWidget
 public:
     explicit QuestionLayout(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
     ~QuestionLayout();
-
-    void setupFormLayout();
+    MultiChoiceQuestion getQuestion();
 
 private:
     Ui::QuestionLayout *ui;

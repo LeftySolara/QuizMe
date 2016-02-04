@@ -49,6 +49,10 @@ public:
     void setupMasterLayout();
 
     QStringList getChoices();
+    QString getQuestion();
+    QString getAnswer();
+    int getPosition();
+    int getPoints();
 
 
 private slots:

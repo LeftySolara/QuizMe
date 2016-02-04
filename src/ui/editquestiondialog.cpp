@@ -125,6 +125,26 @@ QStringList EditQuestionDialog::getChoices()
     return choices;
 }
 
+QString EditQuestionDialog::getQuestion()
+{
+    return questionLineEdit->text();
+}
+
+QString EditQuestionDialog::getAnswer()
+{
+    return answerLineEdit->text();
+}
+
+int EditQuestionDialog::position()
+{
+    return positionLineEdit->text().toInt();
+}
+
+int EditQuestionDialog::points()
+{
+    return pointsLineEdit->text().toInt();
+}
+
 void EditQuestionDialog::addChoice()
 {
     QLabel *blankLabel = new QLabel();   // use to keep formLayout aligned
