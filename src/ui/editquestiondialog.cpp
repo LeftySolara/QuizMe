@@ -135,12 +135,12 @@ QString EditQuestionDialog::getAnswer()
     return answerLineEdit->text();
 }
 
-int EditQuestionDialog::position()
+int EditQuestionDialog::getPosition()
 {
     return positionLineEdit->text().toInt();
 }
 
-int EditQuestionDialog::points()
+int EditQuestionDialog::getPoints()
 {
     return pointsLineEdit->text().toInt();
 }

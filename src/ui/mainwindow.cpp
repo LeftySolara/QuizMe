@@ -144,14 +144,16 @@ void MainWindow::on_actionNew_Question_triggered()
 
     int result = edit_dialog.exec();
     if (result == QDialog::Accepted) {
-        MultiChoiceQuestion *que;
-        que->setQuestion(edit_dialog.getPoints());
-        que->setCorrectAnswer(edit_dialog.getAnswer());
-        que->setPosition(edit_dialog.getPosition());
-        que->setPoints(edit_dialog.getPoints());
-        que->setChoices(edit_dialog.getChoices());
+        MultiChoiceQuestion que;
+        que.setQuestion(edit_dialog.getQuestion());
+        que.setCorrectAnswer(edit_dialog.getAnswer());
+        que.setPosition(edit_dialog.getPosition());
+        que.setPoints(edit_dialog.getPoints());
+        que.setChoices(edit_dialog.getChoices());
 
-        questionLayouts.push_back(que);
+        QuestionLayout *newLayout = new QuestionLayout(0, que);
+
+        questionLayouts.push_back(newLayout);
     }
 
 }

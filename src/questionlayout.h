@@ -53,6 +53,8 @@ private:
     QLabel *questionLabel;
     QLabel *answerLabel;
     QRadioButton *radioButton;
+
+    void setupFormLayout();
 };
 
 #endif // QUESTIONLAYOUT_H
