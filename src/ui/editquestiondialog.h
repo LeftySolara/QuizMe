@@ -31,6 +31,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
+#include <QSpinBox>
 
 namespace Ui {
     class EditQuestionDialog;
@@ -71,9 +72,10 @@ private:
 
     QLineEdit *questionLineEdit;
     QLineEdit *answerLineEdit;
-    QLineEdit *positionLineEdit;
-    QLineEdit *pointsLineEdit;
     QLineEdit *choiceLineEdit;
+
+    QSpinBox *positionSpinBox;
+    QSpinBox *pointsSpinBox;
 
     QPushButton *addChoiceButton;
     QPushButton *acceptButton;

@@ -43,7 +43,9 @@ EditQuestionDialog::~EditQuestionDialog()
     delete questionLabel;
     delete questionLineEdit;
     delete positionLabel;
+    delete positionSpinBox;
     delete pointsLabel;
+    delete pointsSpinBox;
     delete answerLabel;
     delete answerLineEdit;
     delete choiceLineEdit;
@@ -63,9 +65,10 @@ void EditQuestionDialog::setupFormLayout()
 
     questionLineEdit = new QLineEdit();
     answerLineEdit = new QLineEdit();
-    positionLineEdit = new QLineEdit();
-    pointsLineEdit = new QLineEdit();
     choiceLineEdit = new QLineEdit();
+
+    positionSpinBox = new QSpinBox();
+    pointsSpinBox = new QSpinBox();
 
     addChoiceButton = new QPushButton("Add choice");
     addChoiceButton->setFocusPolicy(Qt::ClickFocus);
@@ -73,13 +76,11 @@ void EditQuestionDialog::setupFormLayout()
 
     questionLineEdit->setPlaceholderText("Enter a question...");
     answerLineEdit->setPlaceholderText("Enter the correct answer...");
-    positionLineEdit->setPlaceholderText("Enter position in quiz...");
-    pointsLineEdit->setPlaceholderText("Enter number of points for this question...");
     choiceLineEdit->setPlaceholderText("Enter another answer choice...");
 
     formLayout = new QFormLayout();
-    formLayout->addRow(positionLabel, positionLineEdit);
-    formLayout->addRow(pointsLabel, pointsLineEdit);
+    formLayout->addRow(positionLabel, positionSpinBox);
+    formLayout->addRow(pointsLabel, pointsSpinBox);
     formLayout->addRow(questionLabel, questionLineEdit);
     formLayout->addRow(answerLabel, answerLineEdit);
     formLayout->addRow(addChoiceButton, choiceLineEdit);
@@ -137,12 +138,12 @@ QString EditQuestionDialog::getAnswer()
 
 int EditQuestionDialog::getPosition()
 {
-    return positionLineEdit->text().toInt();
+    return positionSpinBox->value();
 }
 
 int EditQuestionDialog::getPoints()
 {
-    return pointsLineEdit->text().toInt();
+    return pointsSpinBox->value();
 }
 
 void EditQuestionDialog::addChoice()
