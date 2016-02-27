@@ -54,7 +54,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     ui->setupUi(this);
 
+    welcomeScreenLayout = new QVBoxLayout;
     mainLayout = new QVBoxLayout;
+
+    setupWelcomeScreen();
+    centralWidget()->setLayout(welcomeScreenLayout);
 
     // Here for testing
 //    MultiChoiceQuestion que;
@@ -86,9 +90,31 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete mainLayout;
+    delete welcomeScreenLayout;
+    delete openQuizButton;
+    delete editQuizButton;
+    delete createQuizButton;
 
     for (int i = 0; i < questionLayouts.size(); ++i)
         delete questionLayouts[i];
+}
+
+// Display the welcome screen when a quiz or editor is not open.
+void MainWindow::setupWelcomeScreen()
+{
+    createQuizButton = new QPushButton("Create New Quiz");
+    openQuizButton = new QPushButton("Open Quiz");
+    editQuizButton = new QPushButton("Edit Quiz");
+
+    createQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    openQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    editQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+    welcomeScreenLayout->addWidget(createQuizButton);
+    welcomeScreenLayout->addWidget(openQuizButton);
+    welcomeScreenLayout->addWidget(editQuizButton);
+
+    welcomeScreenLayout->setSpacing(0);
 }
 
 // Read a file and create question objects out of it

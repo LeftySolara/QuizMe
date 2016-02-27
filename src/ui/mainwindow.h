@@ -44,6 +44,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void setupWelcomeScreen();
     void openQuizFromFile(QString filename);
 
 
@@ -59,6 +60,11 @@ private:
     QErrorMessage errorMessage;
     QVector<QuestionLayout*> questionLayouts;
     QVBoxLayout *mainLayout;
+    QVBoxLayout *welcomeScreenLayout;
+
+    QPushButton *createQuizButton;
+    QPushButton *editQuizButton;
+    QPushButton *openQuizButton;
 
 //    QVBoxLayout *boxLayout;
 //    QPushButton *button;
