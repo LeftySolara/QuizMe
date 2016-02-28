@@ -24,41 +24,41 @@
 #include "questionlayout.h"
 #include "ui_questionlayout.h"
 
-QuestionLayout::QuestionLayout(QWidget *parent, MultiChoiceQuestion question) :
-    QWidget(parent),
-    ui(new Ui::QuestionLayout)
-{
-    ui->setupUi(this);
+//QuestionLayout::QuestionLayout(QWidget *parent, MultiChoiceQuestion question) :
+//    QWidget(parent),
+//    ui(new Ui::QuestionLayout)
+//{
+//    ui->setupUi(this);
 
-    this->question = question;
-    setupFormLayout();
-}
+//    this->question = question;
+//    setupFormLayout();
+//}
 
-QuestionLayout::~QuestionLayout()
-{
-    delete ui;
-}
+//QuestionLayout::~QuestionLayout()
+//{
+//    delete ui;
+//}
 
-MultiChoiceQuestion QuestionLayout::getQuestion()
-{
-    return this->question;
-}
+//MultiChoiceQuestion QuestionLayout::getQuestion()
+//{
+//    return this->question;
+//}
 
-void QuestionLayout::setupFormLayout()
-{
-    formLayout = new QFormLayout();
+//void QuestionLayout::setupFormLayout()
+//{
+//    formLayout = new QFormLayout();
 
-    questionLabel = new QLabel(question.getQuestion());
-    numberLabel = new QLabel(QString::number(question.getPosition()) + ")");
-    formLayout->addRow(numberLabel, questionLabel);
+//    questionLabel = new QLabel(question.getQuestion());
+//    numberLabel = new QLabel(QString::number(question.getPosition()) + ")");
+//    formLayout->addRow(numberLabel, questionLabel);
 
-    // TODO: Make shuffling optional through settings menu
-    question.shuffleChoices();
-    for (int i = 0; i < question.choices.size(); ++i) {
-        radioButton = new QRadioButton();
-        answerLabel = new QLabel(question.choices[i]);
-        formLayout->addRow(radioButton, answerLabel);
-    }
+//    // TODO: Make shuffling optional through settings menu
+//    question.shuffleChoices();
+//    for (int i = 0; i < question.choices.size(); ++i) {
+//        radioButton = new QRadioButton();
+//        answerLabel = new QLabel(question.choices[i]);
+//        formLayout->addRow(radioButton, answerLabel);
+//    }
 
-    this->setLayout(formLayout);
-}
+//    this->setLayout(formLayout);
+//}

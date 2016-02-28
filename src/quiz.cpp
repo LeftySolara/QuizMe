@@ -25,15 +25,30 @@
 
 Quiz::Quiz()
 {
-
+    possiblePoints = 0;
 }
 
-void Quiz::addQuestion(QuizQuestion question)
+Quiz::Quiz(QList<Question> questions)
 {
-    this->questions.push_back(question);
+    questionList = questions;
+
+    possiblePoints = 0;
+    for (Question q : questionList)
+        possiblePoints += q.points;
 }
 
-void Quiz::removeQuestion(int position)
+void Quiz::addQuestion(QString prompt, QString answer, QStringList choices,
+                       int position, int points)
 {
-    questions.remove(position);
+    Question q;
+
+    q.prompt = prompt;
+    q.correctAnswer = answer;
+    q.choices = choices;
+    q.points = points;
+
+    if (position < 0)
+        q.position = questionList.size() + 1;
+    else
+        q.position = position;
 }

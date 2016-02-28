@@ -26,7 +26,6 @@
 #include "editquestiondialog.h"
 #include "settings.h"
 #include "logger.h"
-#include "multichoicequestion.h"
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
@@ -92,8 +91,8 @@ MainWindow::~MainWindow()
     delete ui;
     delete mainLayout;
 
-    for (int i = 0; i < questionLayouts.size(); ++i)
-        delete questionLayouts[i];
+//    for (int i = 0; i < questionLayouts.size(); ++i)
+//        delete questionLayouts[i];
 }
 
 // Display the welcome screen when a quiz or editor is not open.
@@ -131,7 +130,7 @@ void MainWindow::openQuizFromFile(QString filename)
         return;
     }
 
-    QuestionLayout *layout;
+    // QuestionLayout *layout;
 
     QTextStream in(&targetFile);
     while (!in.atEnd()) {
@@ -139,21 +138,21 @@ void MainWindow::openQuizFromFile(QString filename)
         if (line.isEmpty())
             continue;
 
-        MultiChoiceQuestion question;
-        for (int i = 0; i < line.size(); ++i) {
-            if (i == 0)
-                question.setQuestion(line[i]);
-            else if (i == 1)
-                question.setCorrectAnswer(line[i]);
-            else if (i == 2)
-                question.setPosition(line[i].toInt());
-            else if (i == 3)
-                question.setPoints(line[i].toInt());
-            else
-                question.addChoice(line[i]);
-        }
-        layout = new QuestionLayout(0, question);
-        questionLayouts.push_back(layout);
+//        MultiChoiceQuestion question;
+//        for (int i = 0; i < line.size(); ++i) {
+//            if (i == 0)
+//                question.setQuestion(line[i]);
+//            else if (i == 1)
+//                question.setCorrectAnswer(line[i]);
+//            else if (i == 2)
+//                question.setPosition(line[i].toInt());
+//            else if (i == 3)
+//                question.setPoints(line[i].toInt());
+//            else
+//                question.addChoice(line[i]);
+//        }
+//        layout = new QuestionLayout(0, question);
+//        questionLayouts.push_back(layout);
     }
     targetFile.close();
 }
@@ -173,18 +172,18 @@ void MainWindow::on_actionNew_Question_triggered()
     EditQuestionDialog edit_dialog;
 
     int result = edit_dialog.exec();
-    if (result == QDialog::Accepted) {
-        MultiChoiceQuestion que;
-        que.setQuestion(edit_dialog.getQuestion());
-        que.setCorrectAnswer(edit_dialog.getAnswer());
-        que.setPosition(edit_dialog.getPosition());
-        que.setPoints(edit_dialog.getPoints());
-        que.setChoices(edit_dialog.getChoices());
+//    if (result == QDialog::Accepted) {
+//        MultiChoiceQuestion que;
+//        que.setQuestion(edit_dialog.getQuestion());
+//        que.setCorrectAnswer(edit_dialog.getAnswer());
+//        que.setPosition(edit_dialog.getPosition());
+//        que.setPoints(edit_dialog.getPoints());
+//        que.setChoices(edit_dialog.getChoices());
 
-        QuestionLayout *newLayout = new QuestionLayout(0, que);
+//        QuestionLayout *newLayout = new QuestionLayout(0, que);
 
-        questionLayouts.push_back(newLayout);
-    }
+//        questionLayouts.push_back(newLayout);
+//    }
 
 }
 
@@ -214,8 +213,8 @@ void MainWindow::on_actionOpen_Quiz_triggered()
         tr("Open File"), QDir::homePath(), tr("CSV Files (*.csv)"));
     openQuizFromFile(filename);
 
-    for (int i = 0; i < questionLayouts.size(); ++i) {
-        mainLayout->addWidget(questionLayouts[i]);
-    }
-    centralWidget()->setLayout(mainLayout);
+//    for (int i = 0; i < questionLayouts.size(); ++i) {
+//        mainLayout->addWidget(questionLayouts[i]);
+//    }
+//    centralWidget()->setLayout(mainLayout);
 }

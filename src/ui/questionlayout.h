@@ -24,7 +24,7 @@
 #ifndef QUESTIONLAYOUT_H
 #define QUESTIONLAYOUT_H
 
-#include "multichoicequestion.h"
+
 #include <QWidget>
 #include <QFormLayout>
 #include <QLabel>
@@ -36,25 +36,25 @@ namespace Ui {
 class QuestionLayout;
 }
 
-class QuestionLayout : public QWidget
-{
-    Q_OBJECT
+//class QuestionLayout : public QWidget
+//{
+//    Q_OBJECT
 
-public:
-    explicit QuestionLayout(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
-    ~QuestionLayout();
-    MultiChoiceQuestion getQuestion();
+//public:
+//    // explicit QuestionLayout(QWidget *parent = 0, MultiChoiceQuestion question = MultiChoiceQuestion());
+//    ~QuestionLayout();
+//    // MultiChoiceQuestion getQuestion();
 
-private:
-    Ui::QuestionLayout *ui;
-    MultiChoiceQuestion question;
-    QFormLayout *formLayout;
-    QLabel *numberLabel;
-    QLabel *questionLabel;
-    QLabel *answerLabel;
-    QRadioButton *radioButton;
+//private:
+//    Ui::QuestionLayout *ui;
+//    // MultiChoiceQuestion question;
+//    QFormLayout *formLayout;
+//    QLabel *numberLabel;
+//    QLabel *questionLabel;
+//    QLabel *answerLabel;
+//    QRadioButton *radioButton;
 
-    void setupFormLayout();
-};
+//    void setupFormLayout();
+//};
 
 #endif // QUESTIONLAYOUT_H

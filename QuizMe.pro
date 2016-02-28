@@ -14,9 +14,7 @@ SOURCES += \
     src/ui/editquestiondialog.cpp \
     src/settings.cpp \
     src/logger.cpp \
-    src/quizquestion.cpp \
-    src/multichoicequestion.cpp \
-    src/questionlayout.cpp \
+    src/ui/questionlayout.cpp \
     src/quiz.cpp
 
 HEADERS  += \
@@ -24,12 +22,10 @@ HEADERS  += \
     src/ui/editquestiondialog.h \
     src/settings.h \
     src/logger.h \
-    src/quizquestion.h \
-    src/multichoicequestion.h \
-    src/questionlayout.h \
+    src/ui/questionlayout.h \
     src/quiz.h
 
 FORMS    += \
     src/ui/mainwindow.ui \
     src/ui/editquestiondialog.ui \
-    src/questionlayout.ui
+    src/ui/questionlayout.ui

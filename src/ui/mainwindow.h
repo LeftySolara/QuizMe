@@ -58,7 +58,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QErrorMessage errorMessage;
-    QVector<QuestionLayout*> questionLayouts;
+    // QVector<QuestionLayout*> questionLayouts;
     QVBoxLayout *mainLayout;
     QVBoxLayout *welcomeScreenLayout;
 

@@ -24,21 +24,33 @@
 #ifndef QUIZ_H
 #define QUIZ_H
 
-#include "quizquestion.h"
-#include "questionlayout.h"
-#include <QVector>
+#include <QString>
+#include <QStringList>
+
+
+struct Question
+{
+    QString prompt;
+    QString correctAnswer;
+    QStringList choices;        // includes the correct answer
+    int points;
+    int position;
+};
 
 class Quiz
 {
 public:
     Quiz();
-    void addQuestion(QuizQuestion question);
-    void removeQuestion(int position);
-    void setupForm();
+    Quiz(QList<Question> questions);
+    void addQuestion(QString prompt, QString answer, QStringList choices,
+                     int position = -1, int points = 1);
+//    void removeQuestion(int pos);
+//    void shuffle();
+//    void sort();
 
 private:
-    QVector<QuizQuestion> questions;
-    QuestionLayout *layout;
+    QList<Question> questionList;
+    int possiblePoints;
 };
 
 #endif // QUIZ_H
