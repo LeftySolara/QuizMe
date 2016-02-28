@@ -31,6 +31,7 @@
 #include <QFile>
 #include <QDir>
 #include <QtDebug>
+#include <QMargins>
 
 #define APPLICATION_VERSION "0.1"
 
@@ -58,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mainLayout = new QVBoxLayout;
 
     setupWelcomeScreen();
-    centralWidget()->setLayout(welcomeScreenLayout);
+    centralWidget()->setLayout(mainLayout);
 
     // Here for testing
 //    MultiChoiceQuestion que;
@@ -90,10 +91,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete mainLayout;
-    delete welcomeScreenLayout;
-    delete openQuizButton;
-    delete editQuizButton;
-    delete createQuizButton;
 
     for (int i = 0; i < questionLayouts.size(); ++i)
         delete questionLayouts[i];
@@ -102,19 +99,26 @@ MainWindow::~MainWindow()
 // Display the welcome screen when a quiz or editor is not open.
 void MainWindow::setupWelcomeScreen()
 {
+    QMargins buttonMargins(100,40,100,25);
+
     createQuizButton = new QPushButton("Create New Quiz");
     openQuizButton = new QPushButton("Open Quiz");
     editQuizButton = new QPushButton("Edit Quiz");
+
+    createQuizButton->adjustSize();
 
     createQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     openQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
     editQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 
     welcomeScreenLayout->addWidget(createQuizButton);
+    welcomeScreenLayout->insertSpacing(1,25);
     welcomeScreenLayout->addWidget(openQuizButton);
+    welcomeScreenLayout->insertSpacing(3,25);
     welcomeScreenLayout->addWidget(editQuizButton);
+    welcomeScreenLayout->setContentsMargins(buttonMargins);
 
-    welcomeScreenLayout->setSpacing(0);
+    mainLayout->addLayout(welcomeScreenLayout);
 }
 
 // Read a file and create question objects out of it
