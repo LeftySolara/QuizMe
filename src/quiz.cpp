@@ -52,3 +52,16 @@ void Quiz::addQuestion(QString prompt, QString answer, QStringList choices,
     else
         q.position = position;
 }
+
+void Quiz::removeQuestion(int pos)
+{
+    questionList.removeAt(pos);
+}
+
+void Quiz::sort()
+{
+    if (questionList.size() <= 1)
+        return;
+
+    // mergesort?
+}

@@ -44,9 +44,9 @@ public:
     Quiz(QList<Question> questions);
     void addQuestion(QString prompt, QString answer, QStringList choices,
                      int position = -1, int points = 1);
-//    void removeQuestion(int pos);
+    void removeQuestion(int pos);
 //    void shuffle();
-//    void sort();
+    void sort();
 
 private:
     QList<Question> questionList;
