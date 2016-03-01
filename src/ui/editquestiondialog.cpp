@@ -70,6 +70,9 @@ void EditQuestionDialog::setupFormLayout()
     positionSpinBox = new QSpinBox();
     pointsSpinBox = new QSpinBox();
 
+    positionSpinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    pointsSpinBox->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
     addChoiceButton = new QPushButton("Add choice");
     addChoiceButton->setFocusPolicy(Qt::ClickFocus);
     connect(addChoiceButton, SIGNAL (clicked()), this, SLOT (addChoice()));
