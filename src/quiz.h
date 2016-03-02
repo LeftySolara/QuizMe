@@ -21,11 +21,14 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
+// TODO: Subclass QAbstractTableModel
+
 #ifndef QUIZ_H
 #define QUIZ_H
 
 #include <QString>
 #include <QStringList>
+#include <QAbstractTableModel>
 
 
 struct Question
@@ -37,16 +40,26 @@ struct Question
     int position;
 };
 
-class Quiz
+class Quiz : public QAbstractTableModel
 {
 public:
     Quiz();
     Quiz(QList<Question> questions);
+
+
     void addQuestion(QString prompt, QString answer, QStringList choices,
                      int position = -1, int points = 1);
     void removeQuestion(int pos);
 //    void shuffle();
     void sort();
+
+    // Reimplemented from QAbstractTableModel
+    int rowCount(const QModelIndex &parent) const;
+    int columnCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role);
+    Qt::ItemFlags flags(const QModelIndex &index) const;
 
 private:
     QList<Question> questionList;
