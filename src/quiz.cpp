@@ -48,9 +48,9 @@ void Quiz::addQuestion(QString prompt, QString answer, QStringList choices,
     q.points = points;
 
     if (position < 0)
-        q.position = questionList.size() + 1;
+        q.id = questionList.size() + 1;
     else
-        q.position = position;
+        q.id = position;
 }
 
 void Quiz::removeQuestion(int pos)
@@ -64,4 +64,33 @@ void Quiz::sort()
         return;
 
     // mergesort?
+}
+
+int Quiz::rowCount(const QModelIndex &parent) const
+{
+    return questionList.size();
+}
+
+QVariant Quiz::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role != Qt::DisplayRole)
+        return QVariant();
+
+    if (orientation == Qt::Horizontal) {
+
+        switch (section) {
+        case 0:
+            return QString("ID");
+        case 1:
+            return QString("Points");
+        case 2:
+            return QString("Prompt");
+        case 3:
+            return QString("Answer");
+        default:
+            return QString("Choice %1").arg(section-3);
+        }
+    }
+    else
+        return QString(" ");
 }
