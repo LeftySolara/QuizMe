@@ -66,11 +66,15 @@ void Quiz::sort()
     // mergesort?
 }
 
+// Returns the number of items in the question list as the number of rows in the model.
 int Quiz::rowCount(const QModelIndex &parent) const
 {
     return questionList.size();
 }
 
+// Returns the appropriate header string depending on the orientation of the
+// header and the section. If anything other than the display role is requested,
+// return an invalid QVariant.
 QVariant Quiz::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole)
