@@ -98,3 +98,31 @@ QVariant Quiz::headerData(int section, Qt::Orientation orientation, int role) co
     else
         return QString(" ");
 }
+
+bool Quiz::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (!index.isValid() || role != Qt::EditRole)
+        return false;
+
+    int row = index.row();
+    switch (index.column()) {
+    case 0:
+        questionList[row].id = value.toInt();
+        break;
+    case 1:
+        questionList[row].points = value.toInt();
+        break;
+    case 2:
+        questionList[row].prompt = value.toString();
+        break;
+    case 3:
+        questionList[row].correctAnswer = value.toString();
+        break;
+    default:
+        questionList[row].choices = value.toStringList();
+    }
+
+    emit dataChanged(index, index);
+    return true;
+
+}
