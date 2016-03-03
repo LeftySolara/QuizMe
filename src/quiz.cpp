@@ -72,6 +72,41 @@ int Quiz::rowCount(const QModelIndex &parent) const
     return questionList.size();
 }
 
+// Returns the number of fields in the first question as the number of columns in the model.
+int Quiz::columnCount(const QModelIndex &parent) const
+{
+    // Number of choices + id, points, prompt, and answer fields
+    return questionList[0].choices.size() + 4;
+}
+
+// Returns the appropriate value for the data requested.
+// If an invalid index or a role other than DisplayRole is given,
+// returns an invalid QVariant.
+QVariant Quiz::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
+
+    if (role == Qt::DisplayRole) {
+        int row = index.row();
+
+        switch(index.column()) {
+        case 0:
+            return questionList[row].id;
+        case 1:
+            return questionList[row].points;
+        case 2:
+            return questionList[row].prompt;
+        case 3:
+            return questionList[row].correctAnswer;
+        default:
+            return questionList[row].choices;
+        }
+    }
+    else
+        return QVariant();
+}
+
 // Returns the appropriate header string depending on the orientation of the
 // header and the section. If anything other than the display role is requested,
 // return an invalid QVariant.

@@ -21,7 +21,7 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-// TODO: Subclass QAbstractTableModel
+// TODO: Set fixed size for question choice list
 
 #ifndef QUIZ_H
 #define QUIZ_H
@@ -55,8 +55,8 @@ public:
 
     // Reimplemented from QAbstractTableModel
     int rowCount(const QModelIndex &parent) const;
-//    int columnCount(const QModelIndex &parent) const;
-//    QVariant data(const QModelIndex &index, int role) const;
+    int columnCount(const QModelIndex &parent) const;
+    QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 //    Qt::ItemFlags flags(const QModelIndex &index) const;
