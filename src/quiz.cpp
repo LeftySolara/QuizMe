@@ -37,7 +37,7 @@ Quiz::Quiz(QList<Question> questions)
         possiblePoints += q.points;
 }
 
-void Quiz::addQuestion(QString prompt, QString answer, QStringList choices,
+void Quiz::addQuestion(QString prompt, QString answer, std::array<QString, CHOICE_ARRAY_SIZE> choices,
                        int position, int points)
 {
     Question q;
@@ -73,10 +73,11 @@ int Quiz::rowCount(const QModelIndex &parent) const
 }
 
 // Returns the number of fields in the first question as the number of columns in the model.
+// Every row should have the same number of columns.
 int Quiz::columnCount(const QModelIndex &parent) const
 {
     // Number of choices + id, points, prompt, and answer fields
-    return questionList[0].choices.size() + 4;
+    return questionList[0].choices.max_size() + 4;
 }
 
 // Returns the appropriate value for the data requested.
@@ -89,22 +90,20 @@ QVariant Quiz::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         int row = index.row();
+        int col = index.column();
 
-        switch(index.column()) {
-        case 0:
+        if (col == 0)
             return questionList[row].id;
-        case 1:
+        else if (col == 1)
             return questionList[row].points;
-        case 2:
+        else if (col == 2)
             return questionList[row].prompt;
-        case 3:
+        else if (col == 3)
             return questionList[row].correctAnswer;
-        default:
-            return questionList[row].choices;
-        }
+        else if (col > 3 && col < CHOICE_ARRAY_SIZE + 3)
+            return questionList[row].choices[col-3];
     }
-    else
-        return QVariant();
+    return QVariant();
 }
 
 // Returns the appropriate header string depending on the orientation of the
@@ -134,28 +133,28 @@ QVariant Quiz::headerData(int section, Qt::Orientation orientation, int role) co
         return QString(" ");
 }
 
+// Sets the value of the data in the given model index.
+// If an invalid index is given, returns false.
 bool Quiz::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!index.isValid() || role != Qt::EditRole)
         return false;
 
     int row = index.row();
-    switch (index.column()) {
-    case 0:
+    int col = index.column();
+
+    if (col == 0)
         questionList[row].id = value.toInt();
-        break;
-    case 1:
+    else if (col == 1)
         questionList[row].points = value.toInt();
-        break;
-    case 2:
+    else if (col == 2)
         questionList[row].prompt = value.toString();
-        break;
-    case 3:
+    else if (col == 3) {
         questionList[row].correctAnswer = value.toString();
-        break;
-    default:
-        questionList[row].choices = value.toStringList();
+        questionList[row].choices[0] = value.toString();
     }
+    else if (col > 3 && col < CHOICE_ARRAY_SIZE + 3)
+        questionList[row].choices[col-3] = value.toString();
 
     emit dataChanged(index, index);
     return true;

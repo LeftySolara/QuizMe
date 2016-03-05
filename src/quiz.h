@@ -26,18 +26,20 @@
 #ifndef QUIZ_H
 #define QUIZ_H
 
+#define CHOICE_ARRAY_SIZE 5     // maximum number of choices per question
+
 #include <QString>
-#include <QStringList>
 #include <QAbstractTableModel>
+#include <array>
 
 
 struct Question
 {
+    int id;
+    int points;
     QString prompt;
     QString correctAnswer;
-    QStringList choices;        // includes the correct answer
-    int points;
-    int id;
+    std::array<QString, CHOICE_ARRAY_SIZE> choices;        // includes the correct answer
 };
 
 class Quiz : public QAbstractTableModel
@@ -47,7 +49,7 @@ public:
     Quiz(QList<Question> questions);
 
 
-    void addQuestion(QString prompt, QString answer, QStringList choices,
+    void addQuestion(QString prompt, QString answer, std::array<QString, CHOICE_ARRAY_SIZE> choices,
                      int position = -1, int points = 1);
     void removeQuestion(int pos);
 //    void shuffle();
