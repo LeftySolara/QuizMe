@@ -104,11 +104,18 @@ void MainWindow::setupWelcomeScreen()
     openQuizButton = new QPushButton("Open Quiz");
     editQuizButton = new QPushButton("Edit Quiz");
 
-    createQuizButton->adjustSize();
+    QSize buttonSize(150, 50);
 
-    createQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    openQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    editQuizButton->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    createQuizButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    openQuizButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    editQuizButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+    createQuizButton->setMinimumSize(buttonSize);
+    createQuizButton->setMaximumSize(buttonSize);
+    openQuizButton->setMinimumSize(buttonSize);
+    openQuizButton->setMaximumSize(buttonSize);
+    editQuizButton->setMinimumSize(buttonSize);
+    editQuizButton->setMaximumSize(buttonSize);
 
     welcomeScreenLayout->addWidget(createQuizButton);
     welcomeScreenLayout->insertSpacing(1,25);
@@ -116,6 +123,10 @@ void MainWindow::setupWelcomeScreen()
     welcomeScreenLayout->insertSpacing(3,25);
     welcomeScreenLayout->addWidget(editQuizButton);
     welcomeScreenLayout->setContentsMargins(buttonMargins);
+
+    welcomeScreenLayout->setAlignment(createQuizButton, Qt::AlignHCenter);
+    welcomeScreenLayout->setAlignment(openQuizButton, Qt::AlignHCenter);
+    welcomeScreenLayout->setAlignment(editQuizButton, Qt::AlignHCenter);
 
     mainLayout->addLayout(welcomeScreenLayout);
 }
