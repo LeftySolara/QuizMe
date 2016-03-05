@@ -58,14 +58,6 @@ void Quiz::removeQuestion(int pos)
     questionList.removeAt(pos);
 }
 
-void Quiz::sort()
-{
-    if (questionList.size() <= 1)
-        return;
-
-    // mergesort?
-}
-
 // Returns the number of items in the question list as the number of rows in the model.
 int Quiz::rowCount(const QModelIndex &parent) const
 {
@@ -159,4 +151,12 @@ bool Quiz::setData(const QModelIndex &index, const QVariant &value, int role)
     emit dataChanged(index, index);
     return true;
 
+}
+
+Qt::ItemFlags Quiz::flags(const QModelIndex &index) const
+{
+    if (!index.isValid())
+        return Qt::ItemIsEnabled;
+
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
