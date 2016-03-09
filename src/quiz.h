@@ -21,8 +21,6 @@
  * along with QuizMe.  If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-// TODO: Set fixed size for question choice list
-
 #ifndef QUIZ_H
 #define QUIZ_H
 
