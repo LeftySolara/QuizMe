@@ -75,3 +75,36 @@ void QuestionEditDialog::setupLayoutForm()
         layoutForm->addRow(" ", lineEditChoice);
     }
 }
+
+int QuestionEditDialog::position()
+{
+    return spinboxPosition->value();
+}
+
+int QuestionEditDialog::points()
+{
+    return spinboxPoints->value();
+}
+
+QString QuestionEditDialog::question()
+{
+    return lineEditQuestion->text();
+}
+
+QString QuestionEditDialog::answer()
+{
+    return lineEditAnswer->text();
+}
+
+QStringList QuestionEditDialog::choices()
+{
+    QStringList choices;
+    int rowCount = layoutForm->rowCount();
+
+    for (int row = 4; row < rowCount; ++row) {
+        lineEditChoice = (QLineEdit*)layoutForm->itemAt(row, QFormLayout::FieldRole)->widget();
+        if (!lineEditChoice->text().isEmpty())
+            choices.append(lineEditChoice->text());
+    }
+    return choices;
+}

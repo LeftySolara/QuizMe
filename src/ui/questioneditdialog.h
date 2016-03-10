@@ -25,6 +25,12 @@ public:
     void setupLayoutButtons();
     void setupLayoutForm();
 
+    int position();
+    int points();
+    QString question();
+    QString answer();
+    QStringList choices();
+
 private:
     Ui::QuestionEditDialog *ui;
 
