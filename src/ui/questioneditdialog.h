@@ -6,6 +6,8 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QPushButton>
+#include <QSpinBox>
+#include <QLineEdit>
 
 namespace Ui {
 class QuestionEditDialog;
@@ -16,12 +18,12 @@ class QuestionEditDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit QuestionEditDialog(QWidget *parent = 0);
+    explicit QuestionEditDialog(int numChoices, QWidget *parent = 0);
     ~QuestionEditDialog();
 
-    setupLayoutButtons();
-    setupLayoutForm();
-    setupLayoutMaster();
+    void setupLayoutMaster();
+    void setupLayoutButtons();
+    void setupLayoutForm();
 
 private:
     Ui::QuestionEditDialog *ui;
@@ -30,8 +32,15 @@ private:
     QHBoxLayout *layoutButtons;
     QFormLayout *layoutForm;
 
-    QPushButton buttonAccept;
-    QPushButton buttonReject;
+    QPushButton *buttonAccept;
+    QPushButton *buttonReject;
+
+    QSpinBox *spinboxPosition;
+    QSpinBox *spinboxPoints;
+
+    QLineEdit *lineEditQuestion;
+    QLineEdit *lineEditAnswer;
+    QLineEdit *lineEditChoice;
 
     const int numChoices;
 };
