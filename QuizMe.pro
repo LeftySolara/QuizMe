@@ -11,7 +11,6 @@ TEMPLATE = app
 SOURCES += \
     src/main.cpp \
     src/ui/mainwindow.cpp \
-    src/ui/editquestiondialog.cpp \
     src/settings.cpp \
     src/logger.cpp \
     src/ui/questionlayout.cpp \
@@ -20,7 +19,6 @@ SOURCES += \
 
 HEADERS  += \
     src/ui/mainwindow.h \
-    src/ui/editquestiondialog.h \
     src/settings.h \
     src/logger.h \
     src/ui/questionlayout.h \
