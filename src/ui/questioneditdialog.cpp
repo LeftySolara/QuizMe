@@ -67,8 +67,8 @@ void QuestionEditDialog::setupLayoutButtons()
 
     layoutButtons->setAlignment(Qt::AlignRight);
 
-//    buttonAccept->setSizePolicy(QSizePolicy::Fixed);
-//    buttonReject->setSizePolicy(QSizePolicy::Fixed);
+    buttonAccept->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    buttonReject->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
 // Set up the form layout for editing a question
@@ -80,6 +80,9 @@ void QuestionEditDialog::setupLayoutForm()
     lineEditQuestion = new QLineEdit;
     lineEditAnswer = new QLineEdit;
     lineEditChoice = new QLineEdit;
+
+    spinboxPoints->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    spinboxPosition->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     lineEditQuestion->setPlaceholderText("Enter a question");
     lineEditAnswer->setPlaceholderText("Enter the correct answer");
